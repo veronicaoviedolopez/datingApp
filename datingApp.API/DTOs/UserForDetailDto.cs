@@ -14,7 +14,7 @@ namespace datingApp.API.DTOs
 
     public int Age { get; set; }
 
-    public string knowAs { get; set; }
+    public string knownAs { get; set; }
 
     public DateTime created { get; set; }
 
@@ -24,7 +24,7 @@ namespace datingApp.API.DTOs
 
     public string lookingFor { get; set; }
 
-    public string interest { get; set; }
+    public string interests { get; set; }
 
     public string city { get; set; }
 
@@ -32,7 +32,7 @@ namespace datingApp.API.DTOs
 
     public string photoUrl { get; set; }
 
-    public ICollection<Photo> photos { get; set; }
+    public ICollection<PhotoForDetailDto> photos { get; set; }
 
   }
 }

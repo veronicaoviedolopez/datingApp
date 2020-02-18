@@ -16,7 +16,7 @@ namespace datingApp.API.Models
 
            public DateTime dateOfBirth { get; set; }
 
-           public string knowAs { get; set; }
+           public string knownAs { get; set; }
 
            public DateTime created { get; set; }
 
@@ -26,7 +26,7 @@ namespace datingApp.API.Models
 
            public string lookingFor { get; set; }
 
-           public string interest { get; set; }
+           public string interests { get; set; }
 
            public string city { get; set; }
 

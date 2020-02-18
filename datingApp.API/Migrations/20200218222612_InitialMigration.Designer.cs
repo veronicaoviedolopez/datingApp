@@ -9,8 +9,8 @@ using datingApp.API.Data;
 namespace datingApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200217225502_Initial_Migration")]
-    partial class Initial_Migration
+    [Migration("20200218222612_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,13 +76,13 @@ namespace datingApp.API.Migrations
                     b.Property<string>("gender")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("interest")
+                    b.Property<string>("interests")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("introduction")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("knowAs")
+                    b.Property<string>("knownAs")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("lastActive")

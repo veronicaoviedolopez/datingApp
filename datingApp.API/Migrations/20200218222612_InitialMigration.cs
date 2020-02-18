@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace datingApp.API.Migrations
 {
-    public partial class Initial_Migration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,12 +18,12 @@ namespace datingApp.API.Migrations
                     PasswordSalt = table.Column<byte[]>(nullable: true),
                     gender = table.Column<string>(nullable: true),
                     dateOfBirth = table.Column<DateTime>(nullable: false),
-                    knowAs = table.Column<string>(nullable: true),
+                    knownAs = table.Column<string>(nullable: true),
                     created = table.Column<DateTime>(nullable: false),
                     lastActive = table.Column<DateTime>(nullable: false),
                     introduction = table.Column<string>(nullable: true),
                     lookingFor = table.Column<string>(nullable: true),
-                    interest = table.Column<string>(nullable: true),
+                    interests = table.Column<string>(nullable: true),
                     city = table.Column<string>(nullable: true),
                     country = table.Column<string>(nullable: true)
                 },

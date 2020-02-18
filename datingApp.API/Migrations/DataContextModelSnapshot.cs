@@ -74,13 +74,13 @@ namespace datingApp.API.Migrations
                     b.Property<string>("gender")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("interest")
+                    b.Property<string>("interests")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("introduction")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("knowAs")
+                    b.Property<string>("knownAs")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("lastActive")
