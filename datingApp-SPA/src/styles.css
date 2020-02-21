@@ -6,6 +6,9 @@
 @import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
 
 
+.mat-sidenav-container, .mat-sidenav-content, .mat-tab-body-content {
+  transform: none !important;
+}
 
 .tab-panel {
     border: 1px solid #ddd;
