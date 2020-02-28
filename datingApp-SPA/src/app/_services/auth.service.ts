@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private baseUrl =  environment.apiUrl + 'auth/';
   private helper = new JwtHelperService();
-  
+
   constructor(private http: HttpClient) {}
 
   login(model: any) {
@@ -26,6 +26,9 @@ export class AuthService {
   }
 
   readToken(token?: any) {
+    if (!token) {
+      token = localStorage.getItem('token');
+    }
    return this.helper.decodeToken(token);
     //this.expirationDate = this.helper.getTokenExpirationDate(token);
   }

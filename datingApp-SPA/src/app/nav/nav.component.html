@@ -23,9 +23,9 @@
         Welcome <span *ngIf="LoggedIn()"> {{ readToken() | titlecase }}</span>
       </a>
       <div class="dropdown-menu" *dropdownMenu mt-3>
-        <a class="dropdown-item" href="#">
-          <i class="fa fa-user"></i>
-        Edit Profile</a>
+        <a class="dropdown-item" [routerLink]="['/member/edit']" routerLinkActive="router-link-active" >
+          <i class="fa fa-user"></i> Edit Profile
+        </a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="LoggOut()">
           <i class="fa fa-sign-out"></i>
