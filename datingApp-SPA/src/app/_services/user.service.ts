@@ -9,15 +9,19 @@ import { map } from 'rxjs/operators';
   providedIn: "root"
 })
 export class UserService {
-  private baseUrl:string = environment.apiUrl + "user/";
+  private baseUrl:string = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<User[]> {
     // return this.http.get(this.baseUrl).pipe(map((p:User[]) => p));
-    return this.http.get<User[]>(this.baseUrl);
+    return this.http.get<User[]>(this.baseUrl+ "user/");
   }
 
   getUser(id): Observable<User> {
-    return this.http.get<User>(this.baseUrl + id);
+    return this.http.get<User>(this.baseUrl + "user/" + id);
+  }
+
+  updateUser(id: number, user: User){
+    return this.http.put(this.baseUrl  + "user/" + id, user);
   }
 }
