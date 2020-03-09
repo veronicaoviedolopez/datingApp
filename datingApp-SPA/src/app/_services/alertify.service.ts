@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import  * as alertify from 'alertifyjs';
-
+alertify.defaults.glossary.title = 'Confirmation';
 @Injectable({
   providedIn: 'root'
 })

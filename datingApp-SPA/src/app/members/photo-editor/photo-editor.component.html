@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-sm-2" *ngFor="let photo of photos" >
+    <img src="{{photo.url}}" class="img-thumbnail p-1" alt="">
+    <div class="text-center d-flex justify-content-sm-around">
+      <button class="btn btn-sm" (click)= "setMainPhoto(photo)"
+      [ngClass]= "photo.isMain? 'btn-success active' : 'btn-secondary'"
+      [disabled]= "photo.isMain"> Main </button>
+      <button class="btn btn-sm btn-danger" (click)= "deletePhoto(photo.id)"
+      [disabled]= "photo.isMain">
+        <i class="fa fa-trash-o"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-md-4 col-sm-6 col-xs-12">
+    <span> Add Photos </span>
+    <div ng2FileDrop
+           [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+           (fileOver)="fileOverBase($event)"
+           [uploader]="uploader"
+           class="card p-3 bg-faded text-center mb-3 my-drop-zone">
+           <i class="fa fa-upload fa-3x"></i>
+            Drop Photos Here
+    </div>
+
+    <div class="custom-file">
+      <input type="file" ng2FileSelect [uploader]="uploader" class="custom-file-input form-control-sm" id="multipleFile" multiple />
+      <label class="custom-file-label" for="multipleFile">Choose Multiple Files... </label>
+    </div>
+    <div class="custom-file mt-1">
+      <input type="file" ng2FileSelect [uploader]="uploader" class="custom-file-input" id="singleFile">
+      <label class="custom-file-label" for="singleFile">Choose Single file... </label>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-sm-6 col-xs-12"  *ngIf="uploader?.queue?.length">
+      <p>Queue length: {{ uploader?.queue?.length }}</p>
+
+      <table class="table table-sm table-light table-hover">
+          <thead>
+          <tr>
+              <th width="80%">Name</th>
+              <th>Size</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of uploader.queue">
+              <td>{{ item?.file?.name }}</td>
+              <td *ngIf="uploader.options.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+          </tr>
+          </tbody>
+      </table>
+
+      <div>
+          <div>
+              Queue progress:
+              <div class="progress" class="progress mb-4">
+                  <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+              </div>
+          </div>
+          <div class="d-flex flex-row .justify-content-center justify-content-sm-around">
+            <button type="button" class="btn btn-success btn-s"
+                  (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+              <span class="fa fa-upload"></span> Upload
+            </button>
+            <button type="button" class="btn btn-warning btn-s"
+                  (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+              <span class="fa fa-ban"></span> Cancel
+            </button>
+            <button type="button" class="btn btn-danger btn-s"
+                  (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+              <span class="fa fa-trash"></span> Remove
+            </button>
+          </div>
+      </div>
+  </div>
+</div>

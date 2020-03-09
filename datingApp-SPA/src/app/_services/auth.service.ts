@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { environment } from 'src/environments/environment';
+import { User } from '../_models/User';
+import { BehaviorSubject } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +12,16 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private baseUrl =  environment.apiUrl + 'auth/';
   private helper = new JwtHelperService();
+  currentUser: User;
+  decodedToken: any;
+  photoUrl = new BehaviorSubject<string>('../../assets/user.png');
+  currentPhotoUrl = this.photoUrl.asObservable();
 
   constructor(private http: HttpClient) {}
+
+  changeMemberPhoto(photoUrl: string) {
+    this.photoUrl.next(photoUrl);
+  }
 
   login(model: any) {
     return this.http.post(`${this.baseUrl}login`, model).pipe(
@@ -19,18 +29,14 @@ export class AuthService {
         const user = response;
         if (user) {
           localStorage.setItem('token', user.token);
-          return this.readToken(user.token);
+          localStorage.setItem('user', JSON.stringify(user.user));
+          this.currentUser = user.user;
+          this.decodedToken = this.helper.decodeToken(user.token);
+          this.currentUser = user.user;
+          this.changeMemberPhoto(this.currentUser.photoUrl);
         }
       })
     );
-  }
-
-  readToken(token?: any) {
-    if (!token) {
-      token = localStorage.getItem('token');
-    }
-   return this.helper.decodeToken(token);
-    //this.expirationDate = this.helper.getTokenExpirationDate(token);
   }
 
   register(model: any) {
