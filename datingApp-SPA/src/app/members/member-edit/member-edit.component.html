@@ -29,12 +29,12 @@
 
           <div>
             <strong>Last Active:</strong>
-            <p> {{user.lastActive | date}}</p>
+            <p> {{user.lastActive | date: 'mediumDate'}}</p>
           </div>
 
           <div>
             <strong>Member since:</strong>
-            <p> {{user.created | date}} </p>
+            <p> {{user.created | timeAgo}} </p>
           </div>
         </div>
 
