@@ -13,7 +13,6 @@ import { AlertifyService } from "src/app/_services/alertify.service";
 })
 export class PhotoEditorComponent implements OnInit {
   @Input() photos: Photo[];
-  @Output() getMemberPhotoChange = new EventEmitter<string>();
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
   hasAnotherDropZoneOver = false;
@@ -49,6 +48,11 @@ export class PhotoEditorComponent implements OnInit {
       if (response) {
         const res: Photo = JSON.parse(response);
         this.photos.push(res);
+        if(res.isMain) {
+          this.authService.changeMemberPhoto(res.url);
+          this.authService.currentUser.photoUrl = res.url;
+          localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
+        }
       }
     };
   }

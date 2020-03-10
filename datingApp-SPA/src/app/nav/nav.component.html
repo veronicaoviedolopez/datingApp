@@ -18,7 +18,7 @@
       </li>
     </ul>
     <a class="navbar-brand p-0 m-0 p-0" href="#">
-      <img src="{{photoUrl}}"  alt="photo" class="rounded-circle border border-white d-inline-block align-top">
+      <img src="{{photoUrl || '../../../../assets/user.png'}}"  alt="photo" class="rounded-circle border border-white d-inline-block align-top">
     </a>
     <div dropdown *ngIf="LoggedIn()" class="dropdown m-0 p-0" >
       <a class="dropdown-toggle text-light" dropdownToggle >
