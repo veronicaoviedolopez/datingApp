@@ -18,10 +18,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     this.authService.currentPhotoUrl.subscribe(
-        photo => {
-          this.photoUrl = photo,
-          console.log('this.currentUser.photoUrl', photo);
-        },
+        photo => this.photoUrl = photo,
         error => this.alertifyService.error(error));
   }
 
