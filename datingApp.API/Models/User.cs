@@ -34,6 +34,10 @@ namespace datingApp.API.Models
 
            public ICollection<Photo> photos { get; set; }
 
+           public ICollection<Like> likers { get; set; }
+
+           public ICollection<Like> likees { get; set; }
+
 
     }
 }

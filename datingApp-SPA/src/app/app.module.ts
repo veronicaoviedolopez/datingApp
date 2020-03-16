@@ -32,6 +32,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { ListsComponent } from './lists/lists.component';
+import { ListsResolver } from './_resolvers/list.resolver';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -49,7 +51,8 @@ export function tokenGetter() {
       MemberDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
-      TimeAgoPipe
+      TimeAgoPipe,
+      ListsComponent
    ],
    imports: [
       BrowserModule,
@@ -66,12 +69,12 @@ export function tokenGetter() {
       ButtonsModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       JwtModule.forRoot({
-         config:{
-           tokenGetter,
-            whitelistedDomains: ['localhost:5000'],
-            blacklistedRoutes: ['localhost:5000/api/auth']
-         }
-      })
+        config:{
+          tokenGetter,
+           whitelistedDomains: ['localhost:5000'],
+           blacklistedRoutes: ['localhost:5000/api/auth']
+        }
+     })
    ],
    providers: [
       AuthService,
@@ -82,7 +85,8 @@ export function tokenGetter() {
       MemberDetailResolver,
       MemberlistResolver,
       MemberEditResolver,
-      PreventUnsavedChanges
+      PreventUnsavedChanges,
+      ListsResolver
    ],
    bootstrap: [
       AppComponent
