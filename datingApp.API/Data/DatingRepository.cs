@@ -102,5 +102,20 @@ namespace datingApp.API.Data
         return user.likees.Where(x => x.LikerId == id).Select(i => i.LikeeId);
     
     }
+
+    public async Task<Message> GetMessage(int id)
+    {
+      return await _context.Messages.FirstOrDefaultAsync(x => x.id == id);
+    }
+
+    public Task<PagedList<Message>> GetMessagesForUser()
+    {
+      throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
