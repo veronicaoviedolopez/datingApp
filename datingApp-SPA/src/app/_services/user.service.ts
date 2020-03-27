@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from '../_models/User';
 import { map } from 'rxjs/operators';
 import { PaginatedResult } from '../_models/Pagination';
+import { Message } from '../_models/Message';
 
 @Injectable({
   providedIn: 'root'
@@ -64,5 +65,42 @@ export class UserService {
 
   sendLike(userId: number, userRecipient: number) {
     return this.http.post(`${this.baseUrl}user/${userId}/like/${userRecipient}`,{});
+  }
+
+  getMessages(userId: number, page?, itemsPerPage?, messageContainer?) {
+    const paginatedResult:PaginatedResult<Message[]> = new PaginatedResult<Message[]>();
+    let params = new HttpParams();
+    params =  params.append("MessageContainer", messageContainer);
+    if(page != null && itemsPerPage != null){
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
+      return this.http.get<Message[]>(`${this.baseUrl}user/${userId}/messages`,
+        {observe: 'response', params})
+        .pipe(
+          map( response => {
+            paginatedResult.result = response.body;
+            if(response.headers.get('Pagination') !== null) {
+              paginatedResult.pagination = JSON.parse(response.headers.get('pagination'));
+            }
+            return paginatedResult;
+          })
+        )
+    }
+  }
+
+  getMessageThread(id: number, recipientId: number) {
+    return this.http.get<Message[]>(`${this.baseUrl}user/${id}/messages/thread/${recipientId}`);
+  }
+
+  sendMessage(id: number, message: Message) {
+    return this.http.post(`${this.baseUrl}user/${id}/messages`, message);
+  }
+
+  deleteMessage(id: number, messageId: number) {
+    return this.http.delete(`${this.baseUrl}user/${id}/messages/${messageId}`, {});
+  }
+
+  markAsRead(id:number, messageId:number) {
+    return this.http.post(`${this.baseUrl}user/${id}/messages/${messageId}/read`, {}).subscribe();
   }
 }
