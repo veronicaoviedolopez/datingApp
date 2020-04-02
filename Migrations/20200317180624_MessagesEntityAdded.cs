@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace datingApp.API.Migrations
@@ -12,6 +13,10 @@ namespace datingApp.API.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy",
+                           SqlServerValueGenerationStrategy.IdentityColumn)
+                        .Annotation("MySql:ValueGenerationStrategy",
+                           MySqlValueGenerationStrategy.IdentityColumn)
                         .Annotation("Sqlite:Autoincrement", true),
                     senderId = table.Column<int>(nullable: false),
                     recipientId = table.Column<int>(nullable: false),

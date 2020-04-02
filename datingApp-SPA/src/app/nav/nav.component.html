@@ -1,49 +1,98 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand" [routerLink]="['/home']">Chesty Datting</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['/home']">Chesty Datting</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarsExampleDefault"
+    aria-controls="navbarsExampleDefault"
+    aria-expanded="false"
+    aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/members']" routerLinkActive="active">Matches</a>
+        <a
+          class="nav-link"
+          [routerLink]="['/members']"
+          routerLinkActive="active"
+          >Matches</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/lists']" routerLinkActive="active">List</a>
+        <a class="nav-link" [routerLink]="['/lists']" routerLinkActive="active"
+          >List</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/messages']" routerLinkActive="active">Messages</a>
+        <a
+          class="nav-link"
+          [routerLink]="['/messages']"
+          routerLinkActive="active"
+          >Messages</a
+        >
       </li>
     </ul>
     <a class="navbar-brand p-0 m-0 p-0" href="#">
-      <img src="{{photoUrl || '../../../../assets/user.png'}}"  alt="photo" class="rounded-circle border border-white d-inline-block align-top">
+      <img
+        src="{{ photoUrl || '../../../../assets/user.png' }}"
+        alt="photo"
+        class="rounded-circle border border-white d-inline-block align-top"
+      />
     </a>
-    <div dropdown *ngIf="LoggedIn()" class="dropdown m-0 p-0" >
-      <a class="dropdown-toggle text-light" dropdownToggle >
-        Welcome <span *ngIf="LoggedIn()"> {{ authService.decodedToken?.unique_name | titlecase }}</span>
+    <div dropdown *ngIf="LoggedIn()" class="dropdown m-0 p-0">
+      <a class="dropdown-toggle text-light" dropdownToggle>
+        Welcome
+        <span *ngIf="LoggedIn()">
+          {{ authService.decodedToken?.unique_name | titlecase }}</span
+        >
       </a>
 
       <div class="dropdown-menu" *dropdownMenu mt-3>
-        <a class="dropdown-item" [routerLink]="['/member/edit']" routerLinkActive="router-link-active" >
+        <a
+          class="dropdown-item"
+          [routerLink]="['/member/edit']"
+          routerLinkActive="router-link-active"
+        >
           <i class="fa fa-user"></i> Edit Profile
         </a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="LogOut()">
           <i class="fa fa-sign-out"></i>
-          Logout</a>
+          Logout</a
+        >
       </div>
     </div>
 
-
-    <form *ngIf="!LoggedIn()" #loginForm ="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit) = "Login()">
-      <input class="form-control mr-sm-2" type="text" placeholder="Username"
-        [(ngModel)]="model.username" required name="username" #username="ngModel">
-      <input class="form-control mr-sm-2" type="password" placeholder="Password"
-        [(ngModel)]="model.password" required name="password" #password="ngModel">
-      <button  class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
+    <form
+      *ngIf="!LoggedIn()"
+      #loginForm="ngForm"
+      class="form-inline my-2 my-lg-0"
+      (ngSubmit)="Login()"
+    >
+      <input
+        class="form-control mr-sm-2"
+        type="text"
+        placeholder="Username"
+        [(ngModel)]="model.username"
+        required
+        name="username"
+        #username="ngModel"
+      />
+      <input
+        class="form-control mr-sm-2"
+        type="password"
+        placeholder="Password"
+        [(ngModel)]="model.password"
+        required
+        name="password"
+        #password="ngModel"
+      />
+      <button class="btn btn-success my-2 my-sm-0" type="submit">
+        Login
+      </button>
     </form>
-  </div>
-  </div>
+    </div>
 </nav>

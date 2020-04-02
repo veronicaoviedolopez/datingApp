@@ -1,8 +1,7 @@
-<form [formGroup]="registerForm" (ngSubmit)="register()">
-  <h2 class="text-center text-primary">Sign Up</h2>
-  <hr>
+<form [formGroup]="registerForm" (ngSubmit)="register()" class="d-flex flex-column">
+  <h2 class="text-center text-primary m-3">Sign Up</h2>
 
-  <div class="form-group">
+  <div class="form-group flex-fill">
     <input type="text" formControlName="username" class="form-control"
     [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}"
     placeholder="Username" >

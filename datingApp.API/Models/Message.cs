@@ -8,11 +8,11 @@ namespace datingApp.API.Models
 
         public int senderId { get; set; }
 
-        public User sender { get; set; }
+        public virtual User sender { get; set; }
 
         public int recipientId { get; set; }
 
-        public User recipient { get; set; }
+        public virtual User recipient { get; set; }
 
         public string content { get; set; }
 
